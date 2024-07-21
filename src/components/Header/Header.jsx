@@ -16,22 +16,22 @@ function Header() {
         <div>
             <header className="bg-gray-800 text-white">
                 <nav className="container mx-auto flex justify-between items-center p-4">
-                    <div className="logo text-2xl font-bold">
+                    {/* <div className="logo text-2xl font-bold">
                         <NavLink to="/" className="hover:text-gray-400">Todo App</NavLink>
-                    </div>
-                    <div className="flex items-center space-x-4">
+                    </div> */}
+                    
                         {token ? (
-                            <div className="flex items-center space-x-4">
-                                <p className="text-lg">
-                                    Welcome, <span className="font-semibold">{user?.name}</span>
-                                </p>
-                                <button
-                                    onClick={logout}
-                                    className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition duration-300"
-                                >
-                                    Logout
-                                </button>
-                            </div>
+                           <div className="flex items-center justify-between w-full">
+                           <p className="text-lg">
+                               Welcome, <span className="font-semibold">{user?.name}</span>
+                           </p>
+                           <button
+                               onClick={logout}
+                               className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition duration-300"
+                           >
+                               Logout
+                           </button>
+                       </div>
                         ) : (
                             <ul className="flex space-x-4">
                                 <li>
@@ -52,7 +52,7 @@ function Header() {
                                 </li>
                             </ul>
                         )}
-                    </div>
+                    
                 </nav>
             </header>
             <main>

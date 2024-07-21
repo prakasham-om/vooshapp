@@ -4,7 +4,7 @@ import TokenContext from '../../context/TokenContext';
 import axios from "../../Axios/axios.js";
 import "./createTask.css";
 
-function CreateTask() {
+function CreateTask({ onClose }) {
     const { dispatch } = useContext(TaskContext);
     const { userToken } = useContext(TokenContext);
     const [title, setTitle] = useState("");
@@ -15,7 +15,7 @@ function CreateTask() {
     const handleAdd = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("/task/addTask", { title, description }, {
+            await axios.post("/task/addTask", { title, description }, {
                 headers: {
                     Authorization: `Bearer ${userToken}`
                 }
@@ -33,6 +33,7 @@ function CreateTask() {
             setShowToast(true);
 
             setTimeout(() => setShowToast(false), 2000);
+            onClose(); // Close the form after adding the task
         } catch (error) {
             console.log(error);
             setToastMessage("Error adding task. Please try again.");
@@ -42,7 +43,7 @@ function CreateTask() {
     };
 
     return (
-        <div className="addContainer md:w-1/3 mx-auto p-4 bg-white shadow-lg rounded-lg">
+        <div className="addContainer p-4 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl font-semibold mb-4 text-center">Create Task</h2>
             <form onSubmit={handleAdd}>
                 <div className="mb-4">

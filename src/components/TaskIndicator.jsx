@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 function TaskIndicator() {
     return (
-        <div className='flex flex-col md:flex-row md:justify-center md:items-center mt-4'>
-            <nav className='w-full md:w-auto'>
-                <ul className='flex flex-wrap gap-4 p-4 bg-gray-800 rounded-lg shadow-md'>
-                    <li>
+        <div className='flex flex-col items-center mt-4 w-full'>
+            <nav className='w-full'>
+                <ul className='flex flex-nowrap justify-between p-2 bg-blue-800 rounded-lg shadow-md w-full overflow-x-auto'>
+                    <li className='flex-1'>
                         <NavLink
                             to="/"
                             className={({ isActive }) =>
@@ -15,10 +15,10 @@ function TaskIndicator() {
                                 }`
                             }
                         >
-                            All Task
+                            Todo
                         </NavLink>
                     </li>
-                    <li>
+                    <li className='flex-1'>
                         <NavLink
                             to="/active"
                             className={({ isActive }) =>
@@ -27,10 +27,10 @@ function TaskIndicator() {
                                 }`
                             }
                         >
-                            Active
+                            Progress
                         </NavLink>
                     </li>
-                    <li>
+                    <li className='flex-1'>
                         <NavLink
                             to="/completed"
                             className={({ isActive }) =>
