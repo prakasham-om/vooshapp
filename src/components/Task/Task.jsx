@@ -4,17 +4,26 @@ import "./task.css";
 import { useContext } from 'react';
 import TaskContext from '../../context/TaskContext';
 import DeleteIcon from '@mui/icons-material/Delete';
+import axios from "../../Axios/axios.js";
+import TokenContext from '../../context/TokenContext';
 function Task({ task, id }) {
     const { dispatch } = useContext(TaskContext);
-
-    const handleRemove = (e) => {
+    const { userToken } = useContext(TokenContext);
+    const handleRemove = async (e) => {
         e.preventDefault();
-        
-
-        dispatch({
-            type: "REMOVE_TASK",
-            id
-        })
+        try {
+            await axios.delete(`/task/removeTask/${task._id}`,  {
+                headers: {
+                    Authorization: `Bearer ${userToken}`
+                }
+            });
+            dispatch({
+                type: "REMOVE_TASK",
+                id
+            });
+        } catch (error) {
+            console.error("Error removing task:", error.message);
+        }
     }
 
     const handleMarkDone = (e) => {
